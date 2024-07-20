@@ -48,3 +48,20 @@ app.use(
 app.listen(port, () => {
   console.log(`listening at ${port}/tcp`)
 })
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/d/:id', (req, res) => {
+  const yandexUrl = `https://disk.yandex.ru/d/${req.params.id}`;
+  res.redirect(yandexUrl);
+});
+
+app.use((req, res) => {
+  res.status(404).send('404: NOT_FOUND');
+});
+
+app.listen(port, () => {
+  console.log(`Server is running at http://localhost:${port}`);
+});
